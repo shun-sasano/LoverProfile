@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +17,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        // Admobの初期化
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+//        let domain = Bundle.main.bundleIdentifier!
+//        UserDefaults.standard.removePersistentDomain(forName: domain)
+//        UserDefaults.standard.synchronize()
+        setup()
+        let ud = UserDefaults.standard
+        ud.register(defaults: ["isFinishedFirstStart" : false])
+        if !(ud.object(forKey: "isFinishedFirstStart") as! Bool) {
+            window?.rootViewController = UIStoryboard(name: "Start", bundle: nil).instantiateInitialViewController()
+        }
+        
         return true
+    }
+    
+    func setup() {
+        let config = Realm.Configuration(
+            
+            schemaVersion: 1,
+            
+            
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {
+                    
+                }
+        })
+        
+        Realm.Configuration.defaultConfiguration = config
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

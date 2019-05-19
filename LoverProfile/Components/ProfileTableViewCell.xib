@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTableViewCell" rowHeight="84" id="qI9-Of-N3n" customClass="ProfileTableViewCell" customModule="LoverProfile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qI9-Of-N3n" id="rk7-TI-xg3">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="83.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63X-5t-jDF">
+                        <rect key="frame" x="30" y="16" width="368" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="WLd-lm-7kM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <color key="textColor" red="0.46169807510745181" green="0.48066703680203049" blue="0.46364498150271582" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbM-4E-hgp">
+                        <rect key="frame" x="31" y="45" width="367" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.26948418236439647" green="0.2805559961928934" blue="0.27062055374291183" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="63X-5t-jDF" secondAttribute="trailing" constant="16" id="OOv-Po-Yln"/>
+                    <constraint firstAttribute="trailing" secondItem="QbM-4E-hgp" secondAttribute="trailing" constant="16" id="Pmq-j6-c7g"/>
+                    <constraint firstItem="QbM-4E-hgp" firstAttribute="top" secondItem="63X-5t-jDF" secondAttribute="bottom" constant="8" id="Q7X-xd-rII"/>
+                    <constraint firstItem="QbM-4E-hgp" firstAttribute="leading" secondItem="rk7-TI-xg3" secondAttribute="leading" constant="31" id="cel-id-IUK"/>
+                    <constraint firstItem="63X-5t-jDF" firstAttribute="top" secondItem="rk7-TI-xg3" secondAttribute="top" constant="16" id="fGe-Od-rj7"/>
+                    <constraint firstItem="63X-5t-jDF" firstAttribute="leading" secondItem="rk7-TI-xg3" secondAttribute="leading" constant="30" id="fJb-Nc-0SW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="QbM-4E-hgp" id="hFU-WK-ldW"/>
+                <outlet property="titleLabel" destination="63X-5t-jDF" id="Enx-rN-wOc"/>
+            </connections>
+            <point key="canvasLocation" x="-501.44927536231887" y="-478.125"/>
+        </tableViewCell>
+    </objects>
+</document>

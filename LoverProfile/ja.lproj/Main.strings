@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "付き合って10ヶ月"; ObjectID = "9LD-7w-TQa"; */
+"9LD-7w-TQa.text" = "付き合って10ヶ月";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "C9v-Pt-WmM"; */
+"C9v-Pt-WmM.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Nuk-Zl-V92"; */
+"Nuk-Zl-V92.title" = "Item";
+
+/* Class = "UILabel"; text = "恋人の名前"; ObjectID = "bYf-mJ-r4W"; */
+"bYf-mJ-r4W.text" = "恋人の名前";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gpO-Ga-0lq"; */
+"gpO-Ga-0lq.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "gw4-gS-eWx"; */
+"gw4-gS-eWx.text" = "name";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "qeJ-4B-xzL"; */
+"qeJ-4B-xzL.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "付き合った日"; ObjectID = "rqH-bh-x7C"; */
+"rqH-bh-x7C.text" = "付き合った日";

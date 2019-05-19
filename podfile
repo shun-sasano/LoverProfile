@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'LoverProfile' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'SnapKit'
+  pod 'RealmSwift'
+  pod 'FSCalendar'
+  pod 'RAMAnimatedTabBarController'
+  pod 'SwiftyUserDefaults', '~> 4.0.0'
+  pod 'lottie-ios'
+  pod 'SwiftDate'
+  pod 'CalculateCalendarLogic'
+  pod 'Google-Mobile-Ads-SDK'
+  # Pods for LoverProfile
+
+  target 'LoverProfileTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'LoverProfileUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+  
+  post_install do | installer |
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-LoverProfile/Pods-LoverProfile-acknowledgements.plist', 'LoverProfile/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+  end
+
+end

@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         var config = Realm.Configuration()
         config.deleteRealmIfMigrationNeeded = true
-        realm = try! Realm(configuration: config)
+        realm = try? Realm(configuration: config)
         profile = realm.object(ofType: Profile.self, forPrimaryKey: 0) ?? profile
         setupViews()
         setupAutolayout()

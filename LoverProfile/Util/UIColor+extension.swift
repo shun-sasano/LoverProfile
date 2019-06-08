@@ -43,6 +43,19 @@ extension UIColor {
         }
         self.init(red: r, green: g, blue: b, alpha: 1.0)
     }
+    
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        
+        return NSString(format:"#%06x", rgb) as String
+    }
 }
 
 extension UIColor: ExtensionCompatible {}
@@ -55,6 +68,22 @@ extension Extension where Base: UIColor {
     
     static var fontBlack: UIColor {
         return #colorLiteral(red: 0.1215686275, green: 0.1215686275, blue: 0.1215686275, alpha: 1)
+    }
+    
+    static var black87: UIColor {
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.87)
+    }
+    
+    static var black54: UIColor {
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.54)
+    }
+    
+    static var black26: UIColor {
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.26)
+    }
+    
+    static var black12: UIColor {
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.12)
     }
     
     static var labelGrey: UIColor {

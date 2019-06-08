@@ -20,9 +20,10 @@ class CalenderViewController: UIViewController {
     
     var schedules: [Schedule]!
     var profile: Profile!
+    var events: Results<Event>?
     
     var realm: Realm!
-//    var bannerView: GADBannerView!
+    var bannerView: GADBannerView!
     
     fileprivate lazy var dateFormatter1: DateFormatter = {
         let formatter = DateFormatter()
@@ -33,23 +34,24 @@ class CalenderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        realm = try! Realm()
         setupAutolayout()
         calenderView.delegate = self
         calenderView.dataSource = self
+//        calenderView.appearance.titleFont = UIFont.boldSystemFont(ofSize: 10)
         calenderView.register(OriginCalendarViewCell.self, forCellReuseIdentifier: "cell")
-        let realm = try! Realm()
+        realm = try! Realm()
         profile = realm.object(ofType: Profile.self, forPrimaryKey: 0)
+        events = realm.objects(Event.self)
         let schedulesResult = realm.objects(Schedule.self)
         schedules = schedulesResult.reversed()
         
 //        // バナー初期化
-//        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-//        bannerView.adUnitID = "ca-app-pub-5198428639720497/1893445372"
-//        bannerView.rootViewController = self
-//        bannerView.load(GADRequest())
-//        bannerView.delegate = self
-//        addBannerViewToView(bannerView)
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-5198428639720497/1893445372"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        addBannerViewToView(bannerView)
         
     }
     
@@ -76,10 +78,14 @@ class CalenderViewController: UIViewController {
     
     func setupAutolayout() {
         calenderView.snp.makeConstraints{ (make) in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.right.equalToSuperview()
             make.height.equalTo(400)
         }
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -88,6 +94,7 @@ class CalenderViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setupNavigationBar()
         calenderView.reloadData()
     }
 }
@@ -95,17 +102,29 @@ class CalenderViewController: UIViewController {
 extension CalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let cell = calendar.cell(for: date, at: .current) as! OriginCalendarViewCell
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         let vc = storyboard.instantiateViewController(withIdentifier: "CalendarDetailViewController") as! CalendarDetailViewController
         vc.date = date
+        vc.eventArray = cell.eventArray
         calendar.deselect(date)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as! OriginCalendarViewCell
-        cell.rightImageView?.image = nil
-        cell.leftImageView?.image = nil
+        cell.reset()
+        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        if events?.count != 0 {
+            if let events = events {
+                for event in events {
+                    if event.isMark(date: date) {
+                        cell.eventArray.append(event)
+                    }
+                }
+            }
+        }
+        cell.displayEventMark()
         if let schedule = realm.objects(Schedule.self).filter("date == %@", date).first {
             if schedule.isDate {
                 cell.rightImageView?.image = #imageLiteral(resourceName: "heart")
@@ -117,6 +136,7 @@ extension CalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         return cell
     }
 
+
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let tokyo = Region(calendar: Calendars.gregorian, zone: Zones.asiaTokyo, locale: Locales.japaneseJapan)
         let date1 = DateInRegion(date, region: tokyo).date
@@ -125,11 +145,7 @@ extension CalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         }
         return nil
     }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-        return UIColor.ex.lightGrey
-    }
-    
+
     // 祝日判定を行い結果を返すメソッド
     func judgeHoliday(_ date : Date) -> Bool {
         //祝日判定用のカレンダークラスのインスタンス

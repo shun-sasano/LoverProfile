@@ -19,37 +19,56 @@ class CalendarDetailViewController: UIViewController {
     var profile: Profile!
     var isDate: Bool = false
     
-    @IBOutlet weak var dateLabel: PaddingLabel!
+    var eventArray: [Event] = []
+    
+    var scrollView: UIScrollView!
+    var contentView: UIView!
+    var dateLabel: PaddingLabel!
     var heartAnimationButton: AnimatedSwitch!
-    @IBOutlet weak var isDateSwitchButton: UIButton!
-    @IBOutlet weak var contentTextView: PlaceHolderTextView!
+    var contentTextView: PlaceHolderTextView!
     var anniversaryLabel: UILabel!
+    
+    @IBOutlet weak var eventTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateLabel.text = date?.toStringWithCurrentLocale()
         let realm = try! Realm()
         if let schedule = realm.objects(Schedule.self).filter("date == %@", date!).first {
             self.schedule = schedule
-            contentTextView.text = schedule.content
-            self.isDate = schedule.isDate
         }
+        
+        self.isDate = schedule?.isDate ?? false
         profile = realm.object(ofType: Profile.self, forPrimaryKey: 0) ?? profile
         setupViews()
         setupAutolayout()
+        contentTextView.text = schedule?.content
     }
     
+    
     func setupViews() {
+        let scrollView = UIScrollView()
+        self.scrollView = scrollView
+        view.addSubview(scrollView)
+        
+        let contentView = UIView()
+        self.contentView = contentView
+        scrollView.addSubview(contentView)
+        
+        let dateLabel = PaddingLabel()
+        self.dateLabel = dateLabel
+        dateLabel.leftInset = 14
         dateLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        dateLabel.text = date?.toStringWithCurrentLocale()
         dateLabel.sizeToFit()
-
+        contentView.addSubview(dateLabel)
+        
         let anniversaryLabel = UILabel()
         self.anniversaryLabel = anniversaryLabel
         anniversaryLabel.font = UIFont.boldSystemFont(ofSize: 18)
         anniversaryLabel.textColor = UIColor.ex.fontBlack
         anniversaryLabel.sizeToFit()
         setupAssociateDurationLabel()
-        self.view.addSubview(anniversaryLabel)
+        contentView.addSubview(anniversaryLabel)
         
         let heartAnimationButton = AnimatedSwitch()
         self.heartAnimationButton = heartAnimationButton
@@ -65,9 +84,22 @@ class CalendarDetailViewController: UIViewController {
         if schedule?.isDate ?? false {
             heartAnimationButton.isOn = true
         }
-        view.addSubview(heartAnimationButton)
+        contentView.addSubview(heartAnimationButton)
         
+        let eventTableView = UITableView()
+        self.eventTableView = eventTableView
+        eventTableView.dataSource = self
+        eventTableView.delegate = self
+        eventTableView.estimatedRowHeight = 30
+        eventTableView.separatorStyle = .none
+        eventTableView.register(CalenderDetailEventTableViewCell.self, forCellReuseIdentifier: "CalenderDetailEventTableViewCell")
+//        eventTableView.register(UINib(nibName: "CalenderDetailEventTableViewCell", bundle: nil), forCellReuseIdentifier: "CalenderDetailEventTableViewCell")
+        contentView.addSubview(eventTableView)
+        
+        let contentTextView = PlaceHolderTextView()
+        self.contentTextView = contentTextView
         contentTextView.placeHolder = "ノート本文"
+        contentView.addSubview(contentTextView)
     }
     
     func setupAssociateDurationLabel() {
@@ -99,12 +131,23 @@ class CalendarDetailViewController: UIViewController {
     }
     
     func setupAutolayout() {
-        dateLabel.snp.makeConstraints{ (make) in
+        scrollView.snp.makeConstraints{ (make) in
+            make.left.right.bottom.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+        }
+        contentView.snp.makeConstraints{ (make) in
+            make.width.equalTo(Device.bounds().width)
+            make.height.equalTo(Device.bounds().height).priority(999)
+            make.top.left.right.bottom.equalToSuperview()
+        }
+        
+        dateLabel.snp.makeConstraints{ (make) in
+            make.top.equalToSuperview()
             make.left.equalToSuperview().offset(32)
-            make.width.equalTo(dateLabel.frame.width + 12)
+            make.width.equalTo(dateLabel.frame.width + 24)
             make.height.equalTo(27)
         }
+        
         dateLabel.addBorderLeft(width: 5, color: UIColor.ex.mainPink)
         
         heartAnimationButton.snp.makeConstraints{ (make) in
@@ -120,22 +163,51 @@ class CalendarDetailViewController: UIViewController {
             make.height.equalTo(21)
         }
         
+//        eventTableView.snp.makeConstraints{ (make) in
+//            make.top.equalTo(anniversaryLabel.snp.bottom).offset(32)
+//            make.left.equalToSuperview().offset(32)
+//            make.right.equalToSuperview().offset(-32)
+//            make.height.equalTo(300)
+//        }
+        
         contentTextView.snp.makeConstraints{ (make) in
-            make.top.equalTo(anniversaryLabel.snp.bottom).offset(32)
+            make.top.equalTo(eventTableView.snp.bottom).offset(32)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.bottom.equalToSuperview().offset(-16)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setupNavigationBar()
         navigationItem.rightBarButtonItem = createToolbarItems()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        eventTableView.snp.remakeConstraints{ (make) in
+            make.top.equalTo(anniversaryLabel.snp.bottom).offset(4)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(eventTableView.contentSize.height)
+        }
     }
     
     func createToolbarItems() -> UIBarButtonItem {
         return UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(CalendarDetailViewController.save(_:)))
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        // 意外とnavigationBar.backgroundColorじゃないね
+        navigationController?.navigationBar.barTintColor = UIColor.ex.mainPink
+        navigationController?.setToolbarItems([createToolbarItems()], animated: true)
+        navigationItem.rightBarButtonItem = createToolbarItems()
     }
     
     @objc func actionHeartButton(_ button: AnimatedButton) {
@@ -182,4 +254,23 @@ class CalendarDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
+}
+
+extension CalendarDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CalenderDetailEventTableViewCell", for: indexPath) as! CalenderDetailEventTableViewCell
+        cell.titleLabel.text = eventArray[indexPath.row].title
+        cell.colorMarkView.backgroundColor = UIColor(code: eventArray[indexPath.row].markColor)
+        return cell
+    }
+}
+
+extension CalendarDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
 }

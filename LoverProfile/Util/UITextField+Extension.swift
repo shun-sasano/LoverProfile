@@ -20,6 +20,7 @@ extension UITextField {
 
 extension UILabel {
     func addBorderLeft(width: CGFloat, color: UIColor) {
+        // autolayout設定後じゃないと効かない気がする
         let border = CALayer()
         border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.height)
         border.backgroundColor = color.cgColor

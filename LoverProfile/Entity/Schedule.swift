@@ -13,4 +13,5 @@ class Schedule: Object {
     @objc dynamic var date: Date = Date()
     @objc dynamic var content: String = ""
     @objc dynamic var isDate: Bool = false
+    var events: List<Event> = List<Event>()
 }

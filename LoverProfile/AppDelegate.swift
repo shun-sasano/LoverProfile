@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Admobの初期化
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
-//        let domain = Bundle.main.bundleIdentifier!
-//        UserDefaults.standard.removePersistentDomain(forName: domain)
-//        UserDefaults.standard.synchronize()
+//        deleteAllUserDefaults()
         setup()
         let ud = UserDefaults.standard
         ud.register(defaults: ["isFinishedFirstStart" : false])
@@ -34,12 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func deleteAllUserDefaults() {
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+    }
+    
     func setup() {
         let config = Realm.Configuration(
-            
             schemaVersion: 1,
-            
-            
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
                     

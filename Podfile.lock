@@ -1,5 +1,6 @@
 PODS:
   - CalculateCalendarLogic (0.2.5)
+  - EFColorPicker (5.0.0)
   - FSCalendar (2.8.0)
   - Google-Mobile-Ads-SDK (7.44.0):
     - GoogleAppMeasurement (~> 6.0)
@@ -43,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - CalculateCalendarLogic
+  - EFColorPicker
   - FSCalendar
   - Google-Mobile-Ads-SDK
   - lottie-ios
@@ -55,6 +57,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CalculateCalendarLogic
+    - EFColorPicker
     - FSCalendar
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
@@ -70,6 +73,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CalculateCalendarLogic: 27db31b8f27a42869ecf7ad0d43963a05af14193
+  EFColorPicker: cdc922e3e334c2c3e494439c3c015e585e1ce7d9
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   Google-Mobile-Ads-SDK: 1e72b4f438d997ab0f2ee62b3a7b0cbcc87c47cb
   GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
@@ -83,6 +87,6 @@ SPEC CHECKSUMS:
   SwiftDate: 8d4f14bf1ef68e95094511504856547bf9e3e1a6
   SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
 
-PODFILE CHECKSUM: e0d6d600d57d66a476bfb6b77f8e1da789601188
+PODFILE CHECKSUM: 5857e18b428e7fcb61f2ccb5c638586f240e340a
 
 COCOAPODS: 1.6.1

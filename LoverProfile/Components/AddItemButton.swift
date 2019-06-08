@@ -26,7 +26,7 @@ class AddItemButton: UIButton {
     func setup() {
         layer.cornerRadius = frame.height / 2
         layer.masksToBounds = true
-        setImage(UIImage(named: "additembutton"), for: .normal)
-        buttonType
+        setImage(UIImage(named: "additembutton")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        
     }
 }

@@ -13,6 +13,7 @@ target 'LoverProfile' do
   pod 'SwiftDate'
   pod 'CalculateCalendarLogic'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'EFColorPicker'
   # Pods for LoverProfile
 
   target 'LoverProfileTests' do

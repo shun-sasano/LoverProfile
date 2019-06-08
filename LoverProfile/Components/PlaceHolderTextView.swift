@@ -12,6 +12,12 @@ import UIKit
     // MARK: Properties
     
     override func draw(_ rect: CGRect) {
+        self.configurePlaceHolder()
+        self.changeVisiblePlaceHolder()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textChanged),
+                                               name: UITextView.textDidChangeNotification,
+                                               object: nil)
         if text == nil || text == "" {
             placeHolderLabel.alpha = 1
         } else {
@@ -49,12 +55,12 @@ import UIKit
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.configurePlaceHolder()
-        self.changeVisiblePlaceHolder()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textChanged),
-                                               name: UITextView.textDidChangeNotification,
-                                               object: nil)
+//        self.configurePlaceHolder()
+//        self.changeVisiblePlaceHolder()
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(textChanged),
+//                                               name: UITextView.textDidChangeNotification,
+//                                               object: nil)
     }
     
     // MARK: Private Methods

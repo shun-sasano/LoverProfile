@@ -19,6 +19,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func setupViews() {
+        detailLabel.textColor = UIColor.ex.black54
         colorMarkView.layer.cornerRadius = colorMarkView.frame.height / 2
         colorMarkView.layer.masksToBounds = true
     }

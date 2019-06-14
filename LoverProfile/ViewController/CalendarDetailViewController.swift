@@ -18,7 +18,7 @@ class CalendarDetailViewController: UIViewController {
     var schedule: Schedule?
     var profile: Profile!
     var isDate: Bool = false
-    
+    var isAnniversal = false
     var eventArray: [Event] = []
     
     var scrollView: UIScrollView!
@@ -65,6 +65,7 @@ class CalendarDetailViewController: UIViewController {
         let anniversaryLabel = UILabel()
         self.anniversaryLabel = anniversaryLabel
         anniversaryLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        anniversaryLabel.isHidden = false
         anniversaryLabel.textColor = UIColor.ex.fontBlack
         anniversaryLabel.sizeToFit()
         setupAssociateDurationLabel()
@@ -88,6 +89,7 @@ class CalendarDetailViewController: UIViewController {
         
         let eventTableView = UITableView()
         self.eventTableView = eventTableView
+        eventTableView.isHidden = true
         eventTableView.dataSource = self
         eventTableView.delegate = self
         eventTableView.estimatedRowHeight = 30
@@ -117,6 +119,7 @@ class CalendarDetailViewController: UIViewController {
                 dateDicArray.append(["ヶ月": month.description])
             }
             if profile.startDate! <= dateTokyo.dateAt(.tomorrow) && profile.startDate?.removeYearAndMonth() == date.removeYearAndMonth() {
+                isAnniversal = true
                 for dateDic in dateDicArray {
                     let anniversaryLabelText = "\(String(describing: anniversaryLabel.text!))\(dateDic.values.first!)\(dateDic.keys.first!)"
                     anniversaryLabel.text = "\(anniversaryLabelText)記念日"
@@ -160,15 +163,21 @@ class CalendarDetailViewController: UIViewController {
             make.top.equalTo(dateLabel.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
-            make.height.equalTo(21)
+            if isAnniversal {
+                make.height.equalTo(21)
+                anniversaryLabel.isHidden = false
+            } else {
+                make.height.equalTo(0)
+                anniversaryLabel.isHidden = true
+            }
         }
         
-//        eventTableView.snp.makeConstraints{ (make) in
-//            make.top.equalTo(anniversaryLabel.snp.bottom).offset(32)
-//            make.left.equalToSuperview().offset(32)
-//            make.right.equalToSuperview().offset(-32)
-//            make.height.equalTo(300)
-//        }
+        eventTableView.snp.makeConstraints{ (make) in
+            make.top.equalTo(anniversaryLabel.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(eventArray.count * 30)
+        }
         
         contentTextView.snp.makeConstraints{ (make) in
             make.top.equalTo(eventTableView.snp.bottom).offset(32)
@@ -182,16 +191,22 @@ class CalendarDetailViewController: UIViewController {
         super.viewWillAppear(true)
         setupNavigationBar()
         navigationItem.rightBarButtonItem = createToolbarItems()
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)], for: .normal)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)]
+        navigationController?.navigationBar.tintColor = UIColor.ex.accent
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        eventTableView.snp.remakeConstraints{ (make) in
-            make.top.equalTo(anniversaryLabel.snp.bottom).offset(4)
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().offset(-32)
-            make.height.equalTo(eventTableView.contentSize.height)
+        if eventArray.count != 0 {
+            eventTableView.isHidden = false
         }
+//        eventTableView.snp.remakeConstraints{ (make) in
+//            make.top.equalTo(anniversaryLabel.snp.bottom).offset(4)
+//            make.left.equalToSuperview().offset(32)
+//            make.right.equalToSuperview().offset(-32)
+//            make.height.equalTo(eventTableView.contentSize.height)
+//        }
     }
     
     func createToolbarItems() -> UIBarButtonItem {

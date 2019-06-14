@@ -21,7 +21,8 @@ class EventIndexViewController: UIViewController {
         super.viewDidLoad()
         title = "イベント一覧"
         navigationController?.navigationBar.barTintColor = UIColor.ex.mainPink
-//        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.tabBarItem.title = nil
+        navigationController?.tabBarController?.tabBar.tintColor = UIColor.ex.mainPink
         setupViews()
         setupAutolayout()
         realm = try! Realm()

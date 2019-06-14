@@ -132,6 +132,7 @@ class EditProfileViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.setToolbarItems([createToolbarItems()], animated: true)
         navigationItem.rightBarButtonItem = createToolbarItems()
+        navigationController?.navigationBar.tintColor = UIColor.ex.accent
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -43,7 +43,7 @@ class EventDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.setToolbarItems([createToolbarItems()], animated: true)
         navigationItem.rightBarButtonItem = createToolbarItems()
-        
+        navigationController?.navigationBar.tintColor = UIColor.ex.black87
         if isEditStatus {
             titleTextField.text = event?.title
             startTextField.text = event?.startDate.toStringWithCurrentLocale()

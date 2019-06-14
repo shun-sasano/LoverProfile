@@ -66,6 +66,14 @@ extension Extension where Base: UIColor {
         return #colorLiteral(red: 1, green: 0.6177613735, blue: 0.6292107701, alpha: 1)
     }
     
+    static var accent: UIColor {
+        return #colorLiteral(red: 0.09019607843, green: 0.7450980392, blue: 0.7333333333, alpha: 1)
+    }
+    
+    static var accent2: UIColor {
+        return #colorLiteral(red: 0.03137254902, green: 0.4941176471, blue: 0.5450980392, alpha: 1)
+    }
+    
     static var fontBlack: UIColor {
         return #colorLiteral(red: 0.1215686275, green: 0.1215686275, blue: 0.1215686275, alpha: 1)
     }

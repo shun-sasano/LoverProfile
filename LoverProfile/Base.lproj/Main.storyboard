@@ -262,10 +262,10 @@
             </objects>
             <point key="canvasLocation" x="2756.521739130435" y="849.77678571428567"/>
         </scene>
-        <!--Animated Tab Bar Controller-->
+        <!--Base Tabbar View Controller-->
         <scene sceneID="rnJ-jY-Nxp">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WWW-1q-oul" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WWW-1q-oul" customClass="BaseTabbarViewController" customModule="LoverProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MQB-qQ-oGO">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -303,7 +303,13 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVr-P9-SJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="gcm-yz-QHI" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="gcm-yz-QHI" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" red="0.090196078430000007" green="0.74509803919999995" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
         </scene>
@@ -358,7 +364,7 @@
         <scene sceneID="Ll7-Oi-cRK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KFV-18-iEZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="calendar" selectedImage="60-around-7" id="Nuk-Zl-V92" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" image="calendar" selectedImage="calendar" id="Nuk-Zl-V92" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="3aR-xc-6rU" id="R7Z-Qq-35G"/>
                         </connections>
@@ -374,7 +380,13 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ox2-lS-GFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="3aR-xc-6rU" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="3aR-xc-6rU" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" red="0.090196078430000007" green="0.74509803919999995" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="850.44642857142856"/>
         </scene>
@@ -382,7 +394,7 @@
         <scene sceneID="0Dp-81-eVd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="akC-gA-rW3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="starIcon" id="0DN-mp-QB4" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" title="" image="starIcon" selectedImage="starIcon" id="0DN-mp-QB4" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="dzF-6Q-4Yb" id="CxW-Od-suN"/>
                         </connections>
@@ -398,13 +410,18 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltu-w2-Uh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="dzF-6Q-4Yb" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="dzF-6Q-4Yb" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" red="0.090196078431372548" green="0.74509803921568629" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="1579.6875"/>
         </scene>
     </scenes>
     <resources>
-        <image name="60-around-7" width="30" height="30"/>
         <image name="calendar" width="24" height="24"/>
         <image name="profile" width="24" height="24"/>
         <image name="starIcon" width="24" height="24"/>

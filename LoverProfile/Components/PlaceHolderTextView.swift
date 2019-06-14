@@ -23,6 +23,8 @@ import UIKit
         } else {
             placeHolderLabel.alpha = 0
         }
+        font = UIFont.boldSystemFont(ofSize: 14)
+        textColor = UIColor.ex.black87
     }
     
     override func prepareForInterfaceBuilder() {

@@ -35,6 +35,7 @@
 		9F23BFE12299699100021DF6 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23BFE02299699100021DF6 /* DatePickerTextField.swift */; };
 		9F23BFE3229C2BD500021DF6 /* CaseIterable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23BFE2229C2BD400021DF6 /* CaseIterable+extension.swift */; };
 		9F23BFE5229D76EF00021DF6 /* Results+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23BFE4229D76EF00021DF6 /* Results+extension.swift */; };
+		9F5661D822B282270017B2DC /* BaseTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5661D722B282270017B2DC /* BaseTabbarViewController.swift */; };
 		9FB46E4B22A96AF60098977F /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB46E4A22A96AF60098977F /* UIView+extension.swift */; };
 		9FB605DA22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB605D822ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift */; };
 		9FB605DB22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB605D922ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib */; };
@@ -110,6 +111,7 @@
 		9F23BFE02299699100021DF6 /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		9F23BFE2229C2BD400021DF6 /* CaseIterable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+extension.swift"; sourceTree = "<group>"; };
 		9F23BFE4229D76EF00021DF6 /* Results+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Results+extension.swift"; sourceTree = "<group>"; };
+		9F5661D722B282270017B2DC /* BaseTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarViewController.swift; sourceTree = "<group>"; };
 		9FB46E4A22A96AF60098977F /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		9FB605D822ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDetailEventTableViewCell.swift; sourceTree = "<group>"; };
 		9FB605D922ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderDetailEventTableViewCell.xib; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				9F20942E22796D9C00533639 /* AddItemViewController.swift */,
 				9F23BFD62298FAF000021DF6 /* EventIndexViewController.swift */,
 				9F23BFDE22993CAE00021DF6 /* EventDetailViewController.swift */,
+				9F5661D722B282270017B2DC /* BaseTabbarViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				9F23BFD5229843D000021DF6 /* Event.swift in Sources */,
 				9FCDCA002260C8BD00953CDF /* Device.swift in Sources */,
 				9F23BFE3229C2BD500021DF6 /* CaseIterable+extension.swift in Sources */,
+				9F5661D822B282270017B2DC /* BaseTabbarViewController.swift in Sources */,
 				9FCDC9F8225E2ECC00953CDF /* ProfileItem.swift in Sources */,
 				9F20942F22796D9C00533639 /* AddItemViewController.swift in Sources */,
 				9FB605DA22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift in Sources */,

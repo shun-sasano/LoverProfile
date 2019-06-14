@@ -23,17 +23,9 @@ class CalenderViewController: UIViewController {
     var events: Results<Event>?
     
     var realm: Realm!
-    var bannerView: GADBannerView!
-    
-    fileprivate lazy var dateFormatter1: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        return formatter
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupAutolayout()
         calenderView.delegate = self
         calenderView.dataSource = self
@@ -44,36 +36,6 @@ class CalenderViewController: UIViewController {
         events = realm.objects(Event.self)
         let schedulesResult = realm.objects(Schedule.self)
         schedules = schedulesResult.reversed()
-        
-//        // バナー初期化
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-5198428639720497/1893445372"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
-        addBannerViewToView(bannerView)
-        
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: bottomLayoutGuide,
-                                attribute: .top,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-            ])
     }
     
     func setupAutolayout() {
@@ -102,7 +64,8 @@ class CalenderViewController: UIViewController {
 extension CalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let cell = calendar.cell(for: date, at: .current) as! OriginCalendarViewCell
+        
+        guard let cell = calendar.cell(for: date, at: .current) as? OriginCalendarViewCell else { return }
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         let vc = storyboard.instantiateViewController(withIdentifier: "CalendarDetailViewController") as! CalendarDetailViewController
         vc.date = date
@@ -140,6 +103,9 @@ extension CalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let tokyo = Region(calendar: Calendars.gregorian, zone: Zones.asiaTokyo, locale: Locales.japaneseJapan)
         let date1 = DateInRegion(date, region: tokyo).date
+        guard let profile = profile else {
+            return nil
+        }
         if profile.startDate! <= date1.dateAt(.tomorrow) && profile.startDate?.removeYearAndMonth() == date.removeYearAndMonth() {
             return UIColor.ex.mainPink
         }

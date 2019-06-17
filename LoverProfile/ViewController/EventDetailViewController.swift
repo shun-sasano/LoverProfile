@@ -136,7 +136,6 @@ class EventDetailViewController: UIViewController {
         let colorSelectionView = EFColorSelectionView()
         self.colorSelectionView = colorSelectionView
         colorSelectionView.setSelectedIndex(index: EFSelectedColorView.HSB, animated: true)
-        colorSelectionView.alpha = 0.7
         currentColorHex = colorSelectionView.color.toHexString()
         colorSelectionView.delegate = self
         contentView.addSubview(colorSelectionView)
@@ -229,7 +228,7 @@ class EventDetailViewController: UIViewController {
             make.top.equalTo(colorLabel.snp.bottom).offset(32)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-30)
         }
     }
     

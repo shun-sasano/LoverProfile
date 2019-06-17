@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "恋人の名前"; ObjectID = "bYf-mJ-r4W"; */
+"bYf-mJ-r4W.text" = "恋人の名前";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "gw4-gS-eWx"; */
+"gw4-gS-eWx.text" = "name";
+
+/* Class = "UILabel"; text = "付き合った日"; ObjectID = "rqH-bh-x7C"; */
+"rqH-bh-x7C.text" = "付き合った日";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "s9q-D4-YaD"; */
+"s9q-D4-YaD.normalTitle" = "Button";
+
+//startViewController
+"startLabel.text" = "Please enter a dating start date";

@@ -204,6 +204,16 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         case .iconImageButton:
             let pathUrl = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
             iconImagePath = pathUrl.path
+            iconImagePath = pathUrl.path?.components(separatedBy: "tmp/")[1]
+            // DocumentディレクトリのfileURLを取得
+            // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
+            let path = UIImageView.fileInDocumentsDirectory(filename: iconImagePath!)
+            print("-------------------")
+            print("書き込むファイルのパス: \(String(describing: path))")
+            print("-------------------")
+            try! image.pngData()?.write(to: path)
+        
+            
             iconImageButton.backgroundImageView?.image = image.withRenderingMode(.alwaysOriginal)
             iconImageButton.subviews[1].contentMode = .scaleAspectFill
         case .backgroundImageButton:

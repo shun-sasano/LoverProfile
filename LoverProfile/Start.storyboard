@@ -90,8 +90,10 @@
                         <viewLayoutGuide key="safeArea" id="rcZ-T7-NXb"/>
                     </view>
                     <connections>
+                        <outlet property="nameInputLabel" destination="zsT-ib-5rk" id="eoS-6a-uEL"/>
                         <outlet property="nameTextField" destination="CI6-Q6-0ic" id="8zL-DL-OW1"/>
                         <outlet property="startButton" destination="r8G-eV-EwP" id="0Ge-If-F3Z"/>
+                        <outlet property="startDateInputLabel" destination="g30-YE-WXR" id="cdA-pw-yKI"/>
                         <outlet property="startDatePicker" destination="clz-9f-XM9" id="5if-MH-E1g"/>
                     </connections>
                 </viewController>

@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  LoverProfile
+
+  Created by 笹野駿 on 2019/06/15.
+  Copyright © 2019 笹野駿. All rights reserved.
+*/
+
+//StartViewController
+"startNameLabel.text" = "Enter your lover's name";
+"startNameField.placeholder" = "Nickname etc.";
+"startDateLabel.text" = "Enter a dating start date";

@@ -22,3 +22,6 @@
 
 /* Class = "UILabel"; text = "付き合った日"; ObjectID = "rqH-bh-x7C"; */
 "rqH-bh-x7C.text" = "付き合った日";
+
+//StartViewController
+"startLabel.text" = "交際開始日を入力してくださいs";

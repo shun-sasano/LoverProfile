@@ -36,6 +36,8 @@
 		9F23BFE3229C2BD500021DF6 /* CaseIterable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23BFE2229C2BD400021DF6 /* CaseIterable+extension.swift */; };
 		9F23BFE5229D76EF00021DF6 /* Results+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23BFE4229D76EF00021DF6 /* Results+extension.swift */; };
 		9F5661D822B282270017B2DC /* BaseTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5661D722B282270017B2DC /* BaseTabbarViewController.swift */; };
+		9F5661DD22B4D29B0017B2DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F5661DF22B4D29B0017B2DC /* Localizable.strings */; };
+		9F56620322B7C67A0017B2DC /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56620222B7C67A0017B2DC /* UIImage+extension.swift */; };
 		9FB46E4B22A96AF60098977F /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB46E4A22A96AF60098977F /* UIView+extension.swift */; };
 		9FB605DA22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB605D822ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift */; };
 		9FB605DB22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB605D922ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib */; };
@@ -112,6 +114,10 @@
 		9F23BFE2229C2BD400021DF6 /* CaseIterable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+extension.swift"; sourceTree = "<group>"; };
 		9F23BFE4229D76EF00021DF6 /* Results+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Results+extension.swift"; sourceTree = "<group>"; };
 		9F5661D722B282270017B2DC /* BaseTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarViewController.swift; sourceTree = "<group>"; };
+		9F5661DA22B3F2790017B2DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		9F5661DE22B4D29B0017B2DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9F5661E122B4D2CF0017B2DC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9F56620222B7C67A0017B2DC /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		9FB46E4A22A96AF60098977F /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		9FB605D822ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDetailEventTableViewCell.swift; sourceTree = "<group>"; };
 		9FB605D922ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderDetailEventTableViewCell.xib; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 				9F23BFBE227D880700021DF6 /* heart.json */,
 				9FCDCA0F2274A30400953CDF /* Start.storyboard */,
 				9F23BFD02290764900021DF6 /* Settings.bundle */,
+				9F5661DF22B4D29B0017B2DC /* Localizable.strings */,
 			);
 			path = LoverProfile;
 			sourceTree = "<group>";
@@ -260,6 +267,7 @@
 				9F23BFE2229C2BD400021DF6 /* CaseIterable+extension.swift */,
 				9F23BFE4229D76EF00021DF6 /* Results+extension.swift */,
 				9FB46E4A22A96AF60098977F /* UIView+extension.swift */,
+				9F56620222B7C67A0017B2DC /* UIImage+extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -444,6 +452,7 @@
 				9F23BFC3228064E100021DF6 /* heart2.json in Resources */,
 				9FCDC9C92258816F00953CDF /* LaunchScreen.storyboard in Resources */,
 				9FCDC9C62258816F00953CDF /* Assets.xcassets in Resources */,
+				9F5661DD22B4D29B0017B2DC /* Localizable.strings in Resources */,
 				9FCDC9FC225E38DD00953CDF /* ProfileTableViewCell.xib in Resources */,
 				9FCDCA102274A30400953CDF /* Start.storyboard in Resources */,
 				9F23BFC92280673500021DF6 /* heart5.json in Resources */,
@@ -616,6 +625,7 @@
 				9F20942D2278A53700533639 /* AddItemButton.swift in Sources */,
 				9F23BFD72298FAF000021DF6 /* EventIndexViewController.swift in Sources */,
 				9F23BFE12299699100021DF6 /* DatePickerTextField.swift in Sources */,
+				9F56620322B7C67A0017B2DC /* UIImage+extension.swift in Sources */,
 				9F20943122796EAD00533639 /* UITextField+Extension.swift in Sources */,
 				9F23BFBD227D859000021DF6 /* HeartButton.swift in Sources */,
 			);
@@ -653,6 +663,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9F5661DF22B4D29B0017B2DC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F5661DE22B4D29B0017B2DC /* en */,
+				9F5661E122B4D2CF0017B2DC /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		9FCDC9C72258816F00953CDF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -667,6 +686,7 @@
 			children = (
 				9FCDC9EF225886A800953CDF /* Base */,
 				9FCDCA082264C19600953CDF /* ja */,
+				9F5661DA22B3F2790017B2DC /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

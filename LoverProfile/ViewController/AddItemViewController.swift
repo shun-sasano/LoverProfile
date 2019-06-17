@@ -90,7 +90,7 @@ class AddItemViewController: UIViewController {
     
     func setupAutolayout() {
         titleField.snp.makeConstraints{ (make) in
-            make.top.equalToSuperview().offset(130)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
             make.height.equalTo(40)

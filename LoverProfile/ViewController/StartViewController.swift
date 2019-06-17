@@ -11,7 +11,9 @@ import RealmSwift
 
 class StartViewController: UIViewController {
 
+    @IBOutlet weak var nameInputLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var startDateInputLabel: UILabel!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
@@ -20,6 +22,11 @@ class StartViewController: UIViewController {
     }
     
     func setupViews() {
+        nameInputLabel.text = NSLocalizedString("startNameLabel.text", comment: "")
+        nameTextField.placeholder = NSLocalizedString("startNameField.placeholder", comment: "")
+        startDateInputLabel.text = NSLocalizedString("startDateLabel.text", comment: "")
+        startDateInputLabel.sizeToFit()
+        
         startButton.layer.cornerRadius = 6
         startButton.layer.masksToBounds = true
     }

@@ -141,12 +141,10 @@ class ProfileViewController: UIViewController {
         profile = realm.object(ofType: Profile.self, forPrimaryKey: 0) ?? profile
         tableView.reloadData()
         nameLabel.text = profile?.name
-        if let iconImagePath = profile?.iconImagePath,
-            let iconImage = UIImage(contentsOfFile: "file:///Users/sasanoshun/Library/Developer/CoreSimulator/Devices/9AF2CDCA-8A0A-4DC3-8CC4-F5B2663AA62D/data/Containers/Data/Application/5ADBC354-BFFE-4956-BF42-58E049FA5A99/tmp/856B250D-0E7D-4968-AED5-36B9A44360FD.jpeg") {
+        if let iconImagePath = profile?.iconImagePath, let iconImage = UIImage(contentsOfFile: iconImagePath) {
             iconImageView.imageView?.image = iconImage
             iconImageView.noImageLabel?.isHidden = true
         } else {
-            print(UIImageView.fileInDocumentsDirectory(filename: profile!.iconImagePath!).absoluteString)
             iconImageView.noImageLabel?.isHidden = false
         }
         if let backgroundImagePath = profile?.backgroundImagePath,

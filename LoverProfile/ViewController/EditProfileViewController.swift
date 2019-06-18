@@ -11,7 +11,7 @@ import SnapKit
 import RealmSwift
 
 class EditProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var backgroundImageButton: ButtonWithBackground!
     @IBOutlet weak var iconImageButton: ButtonWithBackground!
     @IBOutlet weak var loverNameLabel: UILabel!
@@ -159,7 +159,7 @@ class EditProfileViewController: UIViewController {
         }
         navigationController?.popViewController(animated: true)
     }
-
+    
     @objc func actionSetBackgroundImage(_ sender: Any) {
         // カメラロールが利用可能か？
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -191,7 +191,7 @@ class EditProfileViewController: UIViewController {
             self.present(pickerView, animated: true)
         }
     }
-
+    
 }
 
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -200,10 +200,23 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         // 選択した写真を取得する
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         // ビューに表示する
-        switch currentPickerImageEnum! {
+        guard let _currentPickerImageEnum = currentPickerImageEnum else {
+            return
+        }
+        switch _currentPickerImageEnum {
         case .iconImageButton:
             let pathUrl = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
             iconImagePath = pathUrl.path
+            iconImagePath = pathUrl.path?.components(separatedBy: "tmp/")[1]
+            // DocumentディレクトリのfileURLを取得
+            // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
+            let path = UIImageView.fileInDocumentsDirectory(filename: iconImagePath!)
+            print("-------------------")
+            print("書き込むファイルのパス: \(String(describing: path))")
+            print("-------------------")
+            try! image.pngData()?.write(to: path)
+            
+            
             iconImageButton.backgroundImageView?.image = image.withRenderingMode(.alwaysOriginal)
             iconImageButton.subviews[1].contentMode = .scaleAspectFill
         case .backgroundImageButton:

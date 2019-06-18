@@ -11,7 +11,7 @@ import SnapKit
 import RealmSwift
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var backgroundImageView: HeaderView!
@@ -25,11 +25,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     var profile: Profile?
     var realm: Realm!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         var config = Realm.Configuration()
         config.deleteRealmIfMigrationNeeded = true
@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
         setupViews()
         setupAutolayout()
     }
-
+    
     func setupViews() {
         iconImageView.layer.cornerRadius = 75
         iconImageView.layer.masksToBounds = true
@@ -61,7 +61,7 @@ class ProfileViewController: UIViewController {
         tableView.register(UINib(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "profileTableViewCell")
         scrollView.delegate = self
     }
-
+    
     func setupAutolayout() {
         scrollView.snp.makeConstraints{ (make) in
             make.top.left.right.equalToSuperview()
@@ -113,11 +113,11 @@ class ProfileViewController: UIViewController {
         }
         
         // tableviewはcontentsizeで設定するため、viewDidAppearで設定する
-//        tableView.snp.makeConstraints{ (make) in
-//            make.top.equalTo(associateDurationLabel.snp.bottom).offset(40)
-//            make.height.equalTo(tableView.contentSize.height)
-//            make.left.right.equalToSuperview()
-//        }
+        //        tableView.snp.makeConstraints{ (make) in
+        //            make.top.equalTo(associateDurationLabel.snp.bottom).offset(40)
+        //            make.height.equalTo(tableView.contentSize.height)
+        //            make.left.right.equalToSuperview()
+        //        }
         
         cushionView.snp.makeConstraints{ (make) in
             make.top.equalTo(tableView.snp.bottom)
@@ -126,12 +126,12 @@ class ProfileViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-       self.navigationController?.setNavigationBarHidden(true, animated: true)
-//       遷移に入った段階でここの記述が適用される self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.view.backgroundColor = .clear
-//        self.navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //       遷移に入った段階でここの記述が適用される self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //        self.navigationController?.navigationBar.isTranslucent = true
+        //        self.navigationController?.view.backgroundColor = .clear
+        //        self.navigationController?.navigationBar.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,10 +141,12 @@ class ProfileViewController: UIViewController {
         profile = realm.object(ofType: Profile.self, forPrimaryKey: 0) ?? profile
         tableView.reloadData()
         nameLabel.text = profile?.name
-        if let iconImagePath = profile?.iconImagePath, let iconImage = UIImage(contentsOfFile: iconImagePath) {
+        if let iconImagePath = profile?.iconImagePath,
+            let iconImage = UIImage(contentsOfFile: UIImageView.fileInDocumentsDirectory(filename: iconImagePath).absoluteString.components(separatedBy: "file://")[1]) {
             iconImageView.imageView?.image = iconImage
             iconImageView.noImageLabel?.isHidden = true
         } else {
+            print(UIImageView.fileInDocumentsDirectory(filename: profile!.iconImagePath!).absoluteString)
             iconImageView.noImageLabel?.isHidden = false
         }
         if let backgroundImagePath = profile?.backgroundImagePath,
@@ -227,14 +229,14 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return profile?.items.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileTableViewCell", for: indexPath) as! ProfileTableViewCell
         cell.titleLabel.text = profile?.items[indexPath.row].title
         cell.contentLabel.text = profile?.items[indexPath.row].content
         return cell
     }
-
+    
 }
 
 extension ProfileViewController: UITableViewDelegate {

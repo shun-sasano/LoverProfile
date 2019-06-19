@@ -142,15 +142,14 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
         nameLabel.text = profile?.name
         if let iconImagePath = profile?.iconImagePath,
-            let iconImage = UIImage(contentsOfFile: UIImageView.fileInDocumentsDirectory(filename: iconImagePath).absoluteString.components(separatedBy: "file://")[1]) {
+            let iconImage = UIImage(contentsOfFile: UIImageView.fileInDocumentsDirectory(filename: iconImagePath).path) {
             iconImageView.imageView?.image = iconImage
             iconImageView.noImageLabel?.isHidden = true
         } else {
-            print(UIImageView.fileInDocumentsDirectory(filename: profile!.iconImagePath!).absoluteString)
             iconImageView.noImageLabel?.isHidden = false
         }
         if let backgroundImagePath = profile?.backgroundImagePath,
-            let backgroundImage = UIImage(contentsOfFile: backgroundImagePath){
+            let backgroundImage = UIImage(contentsOfFile: UIImageView.fileInDocumentsDirectory(filename: backgroundImagePath).path){
             backgroundImageView.imageView?.image = backgroundImage
             backgroundImageView.noImageLabel?.isHidden = true
         } else {

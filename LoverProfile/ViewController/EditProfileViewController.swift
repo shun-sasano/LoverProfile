@@ -17,7 +17,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var loverNameLabel: UILabel!
     @IBOutlet weak var loverNameTextField: UITextField!
     @IBOutlet weak var startLabel: UILabel!
-    @IBOutlet weak var startDatePicker: UIDatePicker!
+    @IBOutlet weak var startDatePickerField: DatePickerTextField!
     
     var iconImagePath: String?
     var backgroundImagePath: String?
@@ -44,7 +44,7 @@ class EditProfileViewController: UIViewController {
             backgroundImageButton.backgroundImageView?.image = backgroundImage
         }
         loverNameTextField.text = profile.name
-        startDatePicker.date = profile.startDate ?? Date()
+        startDatePickerField.text = profile.startDate?.toStringWithCurrentLocale()
         
         setupViews()
         setupAutolayout()
@@ -63,7 +63,7 @@ class EditProfileViewController: UIViewController {
         iconImageButton.layer.borderColor = UIColor.ex.labelGrey.cgColor
         iconImageButton.layer.masksToBounds = true
         iconImageButton.backgroundImageView?.contentMode = .scaleAspectFill
-        if let iconImagePath = profile.iconImagePath, let image = UIImage(contentsOfFile: iconImagePath) {
+        if let iconImagePath = profile.iconImagePath, let image = UIImage(contentsOfFile: UIImageView.fileInDocumentsDirectory(filename: iconImagePath).path) {
             iconImageButton.backgroundImageView?.image = image
         }
         
@@ -73,7 +73,7 @@ class EditProfileViewController: UIViewController {
         backgroundImageButton.button?.imageEdgeInsets = UIEdgeInsets(top: 85, left: 0, bottom: 85, right: 0)
         backgroundImageButton.button?.titleEdgeInsets = UIEdgeInsets(top: 0, left: -150, bottom: 0, right: 0)
         backgroundImageButton.backgroundColor = UIColor.ex.mainPink
-        if let backgroundImagePath = profile.backgroundImagePath, let image = UIImage(contentsOfFile: backgroundImagePath)?.withRenderingMode(.alwaysOriginal) {
+        if let backgroundImagePath = profile.backgroundImagePath, let image = UIImage(contentsOfFile: UIImageView.fileInDocumentsDirectory(filename: backgroundImagePath).path)?.withRenderingMode(.alwaysOriginal) {
             backgroundImageButton.backgroundImageView?.image = image
         }
         
@@ -120,10 +120,11 @@ class EditProfileViewController: UIViewController {
             make.size.equalTo(startLabel.frame.size)
         }
         
-        startDatePicker.snp.makeConstraints{ (make) in
+        startDatePickerField.snp.makeConstraints{ (make) in
             make.top.equalTo(startLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(300)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(44)
         }
     }
     
@@ -149,7 +150,7 @@ class EditProfileViewController: UIViewController {
         guard let profile = realm.object(ofType: Profile.self, forPrimaryKey: 0) else { return }
         try! realm.write {
             profile.name = loverName
-            profile.startDate = startDatePicker.date
+            profile.startDate = startDatePickerField.text?.toDateFromString()
             if let iconImagePath = iconImagePath {
                 profile.iconImagePath = iconImagePath
             }
@@ -206,7 +207,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         switch _currentPickerImageEnum {
         case .iconImageButton:
             let pathUrl = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
-            iconImagePath = pathUrl.path
             iconImagePath = pathUrl.path?.components(separatedBy: "tmp/")[1]
             // DocumentディレクトリのfileURLを取得
             // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
@@ -221,7 +221,14 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             iconImageButton.subviews[1].contentMode = .scaleAspectFill
         case .backgroundImageButton:
             let pathUrl = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
-            backgroundImagePath = pathUrl.path
+            backgroundImagePath = pathUrl.path?.components(separatedBy: "tmp/")[1]
+            // DocumentディレクトリのfileURLを取得
+            // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
+            let path = UIImageView.fileInDocumentsDirectory(filename: backgroundImagePath!)
+            print("-------------------")
+            print("書き込むファイルのパス: \(String(describing: path))")
+            print("-------------------")
+            try! image.pngData()?.write(to: path)
             backgroundImageButton.backgroundImageView?.image = image.withRenderingMode(.alwaysOriginal)
             backgroundImageButton.subviews[1].contentMode = .scaleAspectFill
         }

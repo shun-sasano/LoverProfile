@@ -14,6 +14,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        titleLabel.textColor = UIColor.ex.black54
         contentLabel.numberOfLines = 1
         let border = CALayer()
         border.frame = CGRect(x: 10, y: 79, width: Device.screenWidth() - 10, height: 1)

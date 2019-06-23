@@ -23,3 +23,17 @@ extension UIImageView {
         return fileURL
     }
 }
+
+extension UIImage {
+    func setTitle() {
+        accessibilityIdentifier = generateTitle()
+    }
+    
+    func getTitle() -> String {
+        return accessibilityIdentifier ?? generateTitle()
+    }
+    
+    func generateTitle() -> String {
+        return UUID().uuidString
+    }
+}

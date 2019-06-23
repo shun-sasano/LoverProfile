@@ -53,7 +53,7 @@ class EventIndexViewController: UIViewController {
         
         goCreateButton.snp.makeConstraints{ (make) in
             make.size.equalTo(CGSize(width: 60,height: 60))
-            make.bottom.equalToSuperview().offset(-120)
+            make.bottom.equalToSuperview().offset(-140)
             make.right.equalToSuperview().offset(-40)
         }
     }
@@ -105,5 +105,24 @@ extension EventIndexViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除する") { (action, index) -> Void in
+            try! self.realm.write {
+                
+                // オブジェクトごと削除
+                self.realm.delete((self.events?[indexPath.row])!)
+                
+                // リレーションだけ消される？？
+                //                profile?.items.remove(at: indexPath.row)
+            }
+            //            profile?.items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        }
+        deleteButton.backgroundColor = UIColor.red
+        return [deleteButton]
     }
 }

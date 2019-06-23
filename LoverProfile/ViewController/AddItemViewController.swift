@@ -12,7 +12,7 @@ import RealmSwift
 class AddItemViewController: UIViewController {
 
     @IBOutlet weak var titleField: UITextField!
-    @IBOutlet weak var contentField: UITextView!
+    @IBOutlet weak var contentField: PlaceHolderTextView!
     
     var index: Int?
     var realm: Realm!
@@ -52,7 +52,7 @@ class AddItemViewController: UIViewController {
     }
     
     func createToolbarItems() -> UIBarButtonItem {
-        return UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(AddItemViewController.save(_:)))
+        return UIBarButtonItem(title: LSEnum.save.text, style: .plain, target: self, action: #selector(AddItemViewController.save(_:)))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,8 +84,10 @@ class AddItemViewController: UIViewController {
     
     func setupViews() {
         titleField.font = UIFont.boldSystemFont(ofSize: 18)
-        titleField.placeholder = "タイトル"
+        titleField.placeholder = LSEnum.title.text
         titleField.addBorderBottom(height: 3, color: UIColor.ex.mainPink)
+        
+        contentField.placeHolder = LSEnum.content.text
     }
     
     func setupAutolayout() {

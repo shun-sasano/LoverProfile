@@ -29,7 +29,6 @@ class CalenderViewController: UIViewController {
         setupAutolayout()
         calenderView.delegate = self
         calenderView.dataSource = self
-//        calenderView.appearance.titleFont = UIFont.boldSystemFont(ofSize: 10)
         calenderView.register(OriginCalendarViewCell.self, forCellReuseIdentifier: "cell")
         realm = try! Realm()
         profile = realm.object(ofType: Profile.self, forPrimaryKey: 0)

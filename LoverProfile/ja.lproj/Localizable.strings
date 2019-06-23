@@ -6,7 +6,41 @@
   Copyright © 2019 笹野駿. All rights reserved.
 */
 
+
+
 //StartViewController
 "startNameLabel.text" = "恋人の名前を入力してください";
 "startNameField.placeholder" = "呼び名など";
 "startDateLabel.text" = "交際開始日を入力してください";
+
+// common
+"save" = "保存";
+"configError" = "設定エラー";
+"configErrorWeek" = "毎週の場合は７日間以上の指定ができません";
+"configErrorMonth" = "毎月の場合は１ヶ月間以上の指定ができません";
+"configErrorYear" = "毎年の場合は一年間以上の指定ができません";
+"yes" = "はい";
+"eventTitle" = "イベントタイトル";
+"title" = "タイトル";
+"duration" = "日時・期間";
+"frequency" = "頻度";
+"markColor" = "マークカラー";
+"startDate" = "開始日時";
+"finishDate" = "終了日時";
+"content" = "メモ本文";
+"setDate" = "デートの日に設定しました";
+"removeDate" = "デートの日を取り消しました";
+"delete" = "削除する";
+"day" = "日";
+"month" = "ヶ月";
+"year" = "年";
+"durationOfAssociate" = "付き合って";
+
+// EditProfileViewContorller
+"EditProfileViewController.iconButton.title" = "恋人の画像を設定";
+"EditProfileViewController.backgroundButton.title" = "背景を設定";
+"EditProfileViewContorller.loverNameLabel.text" = "名前";
+"EditProfileViewContorller.startLabel.text" = "交際開始日";
+
+// AddItemViewController
+"AddItemViewController.contentField.placeholder" = "ノート本文";

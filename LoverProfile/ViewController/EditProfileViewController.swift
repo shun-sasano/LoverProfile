@@ -79,6 +79,7 @@ class EditProfileViewController: UIViewController {
         
         loverNameLabel.text = "名前"
         loverNameLabel.textColor = UIColor.ex.labelGrey
+        loverNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         loverNameLabel.sizeToFit()
         
         loverNameTextField.borderStyle = .none
@@ -86,7 +87,11 @@ class EditProfileViewController: UIViewController {
         
         startLabel.text = "交際開始日"
         startLabel.textColor = UIColor.ex.labelGrey
+        startLabel.font = UIFont.boldSystemFont(ofSize: 16)
         startLabel.sizeToFit()
+        
+        startDatePickerField.font = UIFont.boldSystemFont(ofSize: 16)
+        startDatePickerField.addBorderBottom(height: 1, color: UIColor.ex.black87)
     }
     
     func setupAutolayout() {
@@ -206,8 +211,9 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         }
         switch _currentPickerImageEnum {
         case .iconImageButton:
-            let pathUrl = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
-            iconImagePath = pathUrl.path?.components(separatedBy: "tmp/")[1]
+            image.setTitle()
+            iconImagePath = image.getTitle()
+            
             // DocumentディレクトリのfileURLを取得
             // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
             let path = UIImageView.fileInDocumentsDirectory(filename: iconImagePath!)
@@ -220,8 +226,8 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             iconImageButton.backgroundImageView?.image = image.withRenderingMode(.alwaysOriginal)
             iconImageButton.subviews[1].contentMode = .scaleAspectFill
         case .backgroundImageButton:
-            let pathUrl = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
-            backgroundImagePath = pathUrl.path?.components(separatedBy: "tmp/")[1]
+            image.setTitle()
+            backgroundImagePath = image.getTitle()
             // DocumentディレクトリのfileURLを取得
             // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
             let path = UIImageView.fileInDocumentsDirectory(filename: backgroundImagePath!)

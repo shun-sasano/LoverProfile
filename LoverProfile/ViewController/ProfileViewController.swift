@@ -165,22 +165,22 @@ class ProfileViewController: UIViewController {
             let associateDurationDateComponents = calendar.dateComponents([.year, .month, .day], from: startDate, to: Date())
             var dateDicArray: [[String: String]] = []
             if let year = associateDurationDateComponents.year, year != 0 {
-                dateDicArray.append(["年": " \(year.description)"])
+                dateDicArray.append([LSEnum.year.text: " \(year.description)"])
             }
             if let month = associateDurationDateComponents.month, month != 0 {
-                dateDicArray.append(["ヶ月": " \(month.description)"])
+                dateDicArray.append([LSEnum.month.text: " \(month.description)"])
             }
             if let day = associateDurationDateComponents.day, day != 0 {
-                dateDicArray.append(["日": " \(day.description)"])
+                dateDicArray.append([LSEnum.day.text: " \(day.description)"])
             } else if dateDicArray.count == 0 {
-                dateDicArray.append(["日": " ０"])
+                dateDicArray.append([LSEnum.day.text: " ０"])
             }
             
             for dateDic in dateDicArray {
                 
                 associateDurationLabel.text = "\(String(describing: associateDurationLabel.text!))\(dateDic.values.first!)\(dateDic.keys.first!)"
             }
-            let labelText = "付き合って\(String(describing: associateDurationLabel.text!))"
+            let labelText = "\(LSEnum.durationOfAssociate.text)\(String(describing: associateDurationLabel.text!))"
             let attrText = NSMutableAttributedString(string: labelText)
             let fontAttr1 = [
                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14),
@@ -242,7 +242,7 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "消す") { (action, index) -> Void in
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: LSEnum.delete.text) { (action, index) -> Void in
             try! self.realm.write {
                 
                 // オブジェクトごと削除

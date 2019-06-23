@@ -43,7 +43,7 @@ class EventDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.setToolbarItems([createToolbarItems()], animated: true)
         navigationItem.rightBarButtonItem = createToolbarItems()
-        navigationController?.navigationBar.tintColor = UIColor.ex.black87
+        navigationController?.navigationBar.tintColor = UIColor.ex.accent
         if isEditStatus {
             titleTextField.text = event?.title
             startTextField.text = event?.startDate.toStringWithCurrentLocale()
@@ -56,7 +56,7 @@ class EventDetailViewController: UIViewController {
     }
     
     func createToolbarItems() -> UIBarButtonItem {
-        return UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(EventDetailViewController.save(_:)))
+        return UIBarButtonItem(title: LSEnum.save.text, style: .plain, target: self, action: #selector(EventDetailViewController.save(_:)))
     }
     
     func setupViews() {
@@ -70,29 +70,28 @@ class EventDetailViewController: UIViewController {
         
         let titleLabel = PaddingLabel()
         self.titleLabel = titleLabel
-        titleLabel.text = "イベント追加"
+        titleLabel.leftInset = 0
+        titleLabel.text = LSEnum.eventTitle.text
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        titleLabel.addBorderLeft(width: 5, color: UIColor.ex.mainPink)
         titleLabel.sizeToFit()
         contentView.addSubview(titleLabel)
         
         let titleTextField = UITextField()
         self.titleTextField = titleTextField
-        titleTextField.placeholder = "タイトル"
-        titleTextField.addBorderBottom(height: 3, color: UIColor.ex.mainPink)
+        titleTextField.placeholder = LSEnum.title.text
         contentView.addSubview(titleTextField)
         
         let durationLabel = PaddingLabel()
         self.durationLabel = durationLabel
-        durationLabel.text = "日時・期間"
+        durationLabel.leftInset = 0
+        durationLabel.text = LSEnum.duration.text
         durationLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        durationLabel.addBorderLeft(width: 5, color: UIColor.ex.fontBlack)
         durationLabel.sizeToFit()
         contentView.addSubview(durationLabel)
         
         let startLabel = UILabel()
         self.startLabel = startLabel
-        startLabel.text = "開始日時"
+        startLabel.text = LSEnum.startDate.text
         startLabel.font = UIFont.boldSystemFont(ofSize: 16)
         contentView.addSubview(startLabel)
         
@@ -103,7 +102,7 @@ class EventDetailViewController: UIViewController {
         
         let finishLabel = UILabel()
         self.finishLabel = finishLabel
-        finishLabel.text = "終了日時"
+        finishLabel.text = LSEnum.finishDate.text
         finishLabel.font = UIFont.boldSystemFont(ofSize: 16)
         contentView.addSubview(finishLabel)
         
@@ -114,9 +113,9 @@ class EventDetailViewController: UIViewController {
         
         let frequencyLabel = PaddingLabel()
         self.frequencyLabel = frequencyLabel
-        frequencyLabel.text = "頻度"
+        frequencyLabel.leftInset = 0
+        frequencyLabel.text = LSEnum.frequency.text
         frequencyLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        frequencyLabel.addBorderLeft(width: 5, color: UIColor.ex.fontBlack)
         frequencyLabel.sizeToFit()
         contentView.addSubview(frequencyLabel)
         
@@ -127,9 +126,9 @@ class EventDetailViewController: UIViewController {
         
         let colorLabel = PaddingLabel()
         self.colorLabel = colorLabel
-        colorLabel.text = "マークカラー"
+        colorLabel.leftInset = 0
+        colorLabel.text = LSEnum.markColor.text
         colorLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        colorLabel.addBorderLeft(width: 5, color: UIColor.ex.fontBlack)
         colorLabel.sizeToFit()
         contentView.addSubview(colorLabel)
         
@@ -159,10 +158,9 @@ class EventDetailViewController: UIViewController {
             make.right.equalToSuperview()
             make.height.equalTo(titleLabel.frame.height)
         }
-        titleLabel.addBorderLeft(width: 5, color: UIColor.ex.mainPink)
         
         titleTextField.snp.makeConstraints{ (make) in
-            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(44)
@@ -183,7 +181,7 @@ class EventDetailViewController: UIViewController {
         }
         
         startTextField.snp.makeConstraints{ (make) in
-            make.top.equalTo(startLabel.snp.bottom).offset(8)
+            make.top.equalTo(startLabel.snp.bottom)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(40)
@@ -197,14 +195,14 @@ class EventDetailViewController: UIViewController {
         }
         
         finishTextField.snp.makeConstraints{ (make) in
-            make.top.equalTo(finishLabel.snp.bottom).offset(8)
+            make.top.equalTo(finishLabel.snp.bottom)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(40)
         }
         
         frequencyLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(finishTextField.snp.bottom).offset(32)
+            make.top.equalTo(finishTextField.snp.bottom).offset(40)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(21)
@@ -218,14 +216,14 @@ class EventDetailViewController: UIViewController {
         }
         
         colorLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(frequencySegmentControl.snp.bottom).offset(32)
+            make.top.equalTo(frequencySegmentControl.snp.bottom).offset(40)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(21)
         }
         
         colorSelectionView.snp.makeConstraints{ (make) in
-            make.top.equalTo(colorLabel.snp.bottom).offset(32)
+            make.top.equalTo(colorLabel.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.bottom.equalToSuperview().offset(-30)
@@ -248,11 +246,11 @@ class EventDetailViewController: UIViewController {
         case .failure(let err):
             switch err {
             case .weekError:
-                showAlert(message: "毎週の場合は７日間以上の指定ができません")
+                showAlert(message: LSEnum.configErrorWeek.text)
             case .monthError:
-                showAlert(message: "毎月の場合は１ヶ月間以上の指定ができません")
+                showAlert(message: LSEnum.configErrorMonth.text)
             case .yearError:
-                showAlert(message: "毎年の場合は一年間以上の指定ができません")
+                showAlert(message: LSEnum.configErrorYear.text)
             }
             return
         }
@@ -281,9 +279,9 @@ class EventDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func showAlert(title: String = "設定エラー", message: String) {
+    func showAlert(title: String = LSEnum.configError.text, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "はい", style: .default, handler: nil)
+        let action = UIAlertAction(title: LSEnum.yes.text, style: .default, handler: nil)
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }

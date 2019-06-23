@@ -41,6 +41,7 @@
 		9FB46E4B22A96AF60098977F /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB46E4A22A96AF60098977F /* UIView+extension.swift */; };
 		9FB605DA22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB605D822ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift */; };
 		9FB605DB22ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB605D922ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib */; };
+		9FB70B1422BE33C1000176B6 /* LocalizeTextEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB70B1322BE33C1000176B6 /* LocalizeTextEnum.swift */; };
 		9FCDC9BF2258816D00953CDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCDC9BE2258816D00953CDF /* AppDelegate.swift */; };
 		9FCDC9C12258816D00953CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCDC9C02258816D00953CDF /* ProfileViewController.swift */; };
 		9FCDC9C62258816F00953CDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCDC9C52258816F00953CDF /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		9FB46E4A22A96AF60098977F /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		9FB605D822ABB38200C9AD4D /* CalenderDetailEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDetailEventTableViewCell.swift; sourceTree = "<group>"; };
 		9FB605D922ABB38200C9AD4D /* CalenderDetailEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderDetailEventTableViewCell.xib; sourceTree = "<group>"; };
+		9FB70B1322BE33C1000176B6 /* LocalizeTextEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeTextEnum.swift; sourceTree = "<group>"; };
 		9FCDC9BB2258816D00953CDF /* LoverProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoverProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCDC9BE2258816D00953CDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FCDC9C02258816D00953CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				9F23BFE4229D76EF00021DF6 /* Results+extension.swift */,
 				9FB46E4A22A96AF60098977F /* UIView+extension.swift */,
 				9F56620222B7C67A0017B2DC /* UIImage+extension.swift */,
+				9FB70B1322BE33C1000176B6 /* LocalizeTextEnum.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				9FCDCA122274AADE00953CDF /* StartViewController.swift in Sources */,
 				9FCDCA0C226768B600953CDF /* Date+extension.swift in Sources */,
 				9F209437227C35F800533639 /* IconView.swift in Sources */,
+				9FB70B1422BE33C1000176B6 /* LocalizeTextEnum.swift in Sources */,
 				9F23BFD5229843D000021DF6 /* Event.swift in Sources */,
 				9FCDCA002260C8BD00953CDF /* Device.swift in Sources */,
 				9F23BFE3229C2BD500021DF6 /* CaseIterable+extension.swift in Sources */,

@@ -201,16 +201,10 @@ class CalendarDetailViewController: UIViewController {
         if eventArray.count != 0 {
             eventTableView.isHidden = false
         }
-//        eventTableView.snp.remakeConstraints{ (make) in
-//            make.top.equalTo(anniversaryLabel.snp.bottom).offset(4)
-//            make.left.equalToSuperview().offset(32)
-//            make.right.equalToSuperview().offset(-32)
-//            make.height.equalTo(eventTableView.contentSize.height)
-//        }
     }
     
     func createToolbarItems() -> UIBarButtonItem {
-        return UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(CalendarDetailViewController.save(_:)))
+        return UIBarButtonItem(title: LSEnum.save.text, style: .plain, target: self, action: #selector(CalendarDetailViewController.save(_:)))
     }
     
     func setupNavigationBar() {
@@ -228,7 +222,7 @@ class CalendarDetailViewController: UIViewController {
     @objc func actionHeartButton(_ button: AnimatedButton) {
         isDate = !isDate
         if heartAnimationButton.isOn {
-            let alert: UIAlertController = UIAlertController(title: "デートの日に設定しました", message: nil, preferredStyle:  UIAlertController.Style.alert)
+            let alert: UIAlertController = UIAlertController(title: LSEnum.setDate.text, message: nil, preferredStyle:  UIAlertController.Style.alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
                 (action: UIAlertAction!) -> Void in
                 print("OK")
@@ -236,7 +230,7 @@ class CalendarDetailViewController: UIViewController {
             alert.addAction(defaultAction)
             present(alert, animated: true, completion: nil)
         } else {
-            let alert: UIAlertController = UIAlertController(title: "デートの日を取り消しました", message: nil, preferredStyle:  UIAlertController.Style.alert)
+            let alert: UIAlertController = UIAlertController(title: LSEnum.removeDate.text, message: nil, preferredStyle:  UIAlertController.Style.alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
                 (action: UIAlertAction!) -> Void in
                 print("OK")

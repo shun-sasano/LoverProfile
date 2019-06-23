@@ -24,4 +24,16 @@
 "rqH-bh-x7C.text" = "付き合った日";
 
 //StartViewController
-"startLabel.text" = "交際開始日を入力してくださいs";
+"startLabel.text" = "交際開始日を入力してください";
+
+
+// EditProfileViewContorller
+"EditProfileViewController.iconButton.title" = "恋人の画像を設定";
+"EditProfileViewController.backgroundButton.title" = "背景を設定";
+"EditProfileViewContorller.loverNameLabel.text" = "名前";
+"EditProfileViewContorller.startLabel.text" = "交際開始日";
+
+// AddItemViewController
+"AddItemViewController.titleField.placeholder" = "タイトル";
+"AddItemViewController.titleField.placeholder" = "タイトル";
+"AddItemViewController.titleField.placeholder" = "タイトル";

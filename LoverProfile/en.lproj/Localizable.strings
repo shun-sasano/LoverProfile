@@ -10,3 +10,35 @@
 "startNameLabel.text" = "Enter your lover's name";
 "startNameField.placeholder" = "Nickname etc.";
 "startDateLabel.text" = "Enter a dating start date";
+
+// common
+"save" = "save";
+"configError" = "config error";
+"configErrorWeek" = "Can not specify more than 7 days";
+"configErrorMonth" = "can not specify more than 1 month";
+"configErrorYear" = "can not specify more than 1 year";
+"yes" = "yes";
+"eventTitle" = "Event Title";
+"title" = "Title";
+"duration" = "Date and Time";
+"frequency" = "frequency";
+"markColor" = "Mark Color";
+"startDate" = "Start Date";
+"finishDate" = "Finish Date";
+"content" = "content";
+"setDate" = "set a date";
+"removeDate" = "remove a date";
+"delete" = "delete";
+"day" = "day";
+"month" = "month";
+"year" = "year";
+"durationOfAssociate" = "to associate";
+
+// EditProfileViewContorller
+"EditProfileViewController.iconButton.title" = "Set the image of a lover";
+"EditProfileViewController.backgroundButton.title" = "Set the image of a background";
+"EditProfileViewContorller.loverNameLabel.text" = "name";
+"EditProfileViewContorller.startLabel.text" = "Dating start date";
+
+// AddItemViewController
+"AddItemViewController.contentField.placeholder" = "content";

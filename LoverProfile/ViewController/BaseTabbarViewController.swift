@@ -12,31 +12,31 @@ import RAMAnimatedTabBarController
 
 class BaseTabbarViewController: RAMAnimatedTabBarController {
 
-    var bannerView: GADBannerView!
+//    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // バナー初期化
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.isHidden = false
-        bannerView.adUnitID = "ca-app-pub-5198428639720497/1893445372"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
-        addBannerViewToView(bannerView)
-        view.bringSubviewToFront(bannerView)        
+//        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+//        bannerView.isHidden = false
+//        bannerView.adUnitID = "ca-app-pub-5198428639720497/1893445372"
+//        bannerView.rootViewController = self
+//        bannerView.load(GADRequest())
+//        bannerView.delegate = self
+//        addBannerViewToView(bannerView)
+//        view.bringSubviewToFront(bannerView)
     }
     
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        bannerView.snp.makeConstraints{ (make) in
-            make.bottom.equalTo(tabBar.snp.top)
-            make.centerX.equalToSuperview()
-        }
-    }
-    
+//    func addBannerViewToView(_ bannerView: GADBannerView) {
+//        bannerView.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(bannerView)
+//        bannerView.snp.makeConstraints{ (make) in
+//            make.bottom.equalTo(tabBar.snp.top)
+//            make.centerX.equalToSuperview()
+//        }
+//    }
+//
 
     /*
     // MARK: - Navigation

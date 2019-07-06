@@ -48,4 +48,12 @@ extension UIView {
             self.layer.addSublayer(border)
         }
     }
+    
+    func addBorderFullWidth(width: CGFloat, color: UIColor, position: BorderPosition) {
+        
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: 0, width: Device.screenWidth(), height: width)
+        border.backgroundColor = color.cgColor
+        self.layer.addSublayer(border)
+    }
 }

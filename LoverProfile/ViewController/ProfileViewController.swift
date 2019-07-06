@@ -46,11 +46,13 @@ class ProfileViewController: UIViewController {
         iconImageView.layer.borderColor = UIColor.ex.framePink.cgColor
         iconImageView.backgroundColor = UIColor.ex.mainPink
         iconImageView.contentMode = .scaleAspectFill
+        iconImageView.imageView?.image = #imageLiteral(resourceName: "miuFTHG1743_TP_V4")
         
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.backgroundColor = UIColor.ex.mainPink
+        backgroundImageView.imageView?.image = #imageLiteral(resourceName: "Mizuho18116019_TP_V")
         
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
@@ -60,6 +62,9 @@ class ProfileViewController: UIViewController {
         tableView.estimatedRowHeight = 80
         tableView.register(UINib(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "profileTableViewCell")
         scrollView.delegate = self
+        
+        associateDurationLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        associateDurationLabel.textColor = UIColor.ex.black54
     }
     
     func setupAutolayout() {
@@ -87,7 +92,7 @@ class ProfileViewController: UIViewController {
         }
         
         nameLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(iconImageView.snp.bottom).offset(20)
+            make.top.equalTo(iconImageView.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(30)
             make.height.equalTo(21)
         }
@@ -100,7 +105,7 @@ class ProfileViewController: UIViewController {
         }
         
         associateDurationLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(nameLabel.snp.bottom).offset(20)
+            make.top.equalTo(nameLabel.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(30)
             make.height.equalTo(21)
         }
@@ -165,15 +170,15 @@ class ProfileViewController: UIViewController {
             let associateDurationDateComponents = calendar.dateComponents([.year, .month, .day], from: startDate, to: Date())
             var dateDicArray: [[String: String]] = []
             if let year = associateDurationDateComponents.year, year != 0 {
-                dateDicArray.append([LSEnum.year.text: " \(year.description)"])
+                dateDicArray.append([LSEnum.year.text: "\(year.description)"])
             }
             if let month = associateDurationDateComponents.month, month != 0 {
-                dateDicArray.append([LSEnum.month.text: " \(month.description)"])
+                dateDicArray.append([LSEnum.month.text: "\(month.description)"])
             }
             if let day = associateDurationDateComponents.day, day != 0 {
-                dateDicArray.append([LSEnum.day.text: " \(day.description)"])
+                dateDicArray.append([LSEnum.day.text: "\(day.description)"])
             } else if dateDicArray.count == 0 {
-                dateDicArray.append([LSEnum.day.text: " ０"])
+                dateDicArray.append([LSEnum.day.text: "０"])
             }
             
             for dateDic in dateDicArray {
@@ -181,18 +186,7 @@ class ProfileViewController: UIViewController {
                 associateDurationLabel.text = "\(String(describing: associateDurationLabel.text!))\(dateDic.values.first!)\(dateDic.keys.first!)"
             }
             let labelText = "\(LSEnum.durationOfAssociate.text)\(String(describing: associateDurationLabel.text!))"
-            let attrText = NSMutableAttributedString(string: labelText)
-            let fontAttr1 = [
-                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14),
-                NSAttributedString.Key.foregroundColor: UIColor.ex.fontBlack
-            ]
-            let fontAttr2 = [
-                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
-                NSAttributedString.Key.foregroundColor: UIColor.ex.fontBlack
-            ]
-            attrText.addAttributes(fontAttr1, range: NSMakeRange(0, 5))
-            attrText.addAttributes(fontAttr2, range: NSRange(location: 5, length: (labelText as NSString).length - 5))
-            associateDurationLabel.attributedText = attrText
+            associateDurationLabel.text = labelText.applyingTransform(.fullwidthToHalfwidth, reverse: true)
             
         }
     }
@@ -200,6 +194,7 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setupTableViewAutolayout()
+        tableView.addBorderFullWidth(width: 1, color: UIColor.ex.black6, position: .top)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -210,13 +205,13 @@ class ProfileViewController: UIViewController {
         print("profile?.items.count\(profile?.items.count ?? 0)")
         print("1tableView.contentSize.height\(tableView.contentSize.height)")
         tableView.snp.makeConstraints{ (make) in
-            make.top.equalTo(associateDurationLabel.snp.bottom).offset(40)
+            make.top.equalTo(associateDurationLabel.snp.bottom).offset(24)
             make.height.equalTo(tableView.contentSize.height)
             make.left.right.equalToSuperview()
         }
         print("2tableView.contentSize.height\(tableView.contentSize.height)")
         tableView.snp.remakeConstraints { (make) in
-            make.top.equalTo(associateDurationLabel.snp.bottom).offset(40)
+            make.top.equalTo(associateDurationLabel.snp.bottom).offset(24)
             make.height.equalTo(tableView.contentSize.height)
             make.left.right.equalToSuperview()
         }

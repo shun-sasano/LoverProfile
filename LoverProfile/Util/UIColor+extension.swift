@@ -94,6 +94,10 @@ extension Extension where Base: UIColor {
         return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.12)
     }
     
+    static var black6: UIColor {
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.06)
+    }
+    
     static var labelGrey: UIColor {
         return #colorLiteral(red: 0.4572430849, green: 0.4814780951, blue: 0.4622520804, alpha: 1)
     }
